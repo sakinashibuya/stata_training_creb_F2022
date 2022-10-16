@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float} % This lets you use [H] for figure.
+\usepackage{subcaption}
+\usepackage[final]{pdfpages}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{adjustbox}
+
+\usepackage{pdflscape}
+
+\usepackage{colortbl}
+
+\usepackage{booktabs}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{tabularx}
+\usepackage{natbib}
+
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+
+\newcommand\litem[1]{\item{\bfseries#1.\space}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\title{Results Write-up}
+\author{Sakina Shibuya}
+\maketitle	
+
+\section{Result Tables}
+
+\subsection{Tables with outreg2}
+
+\begin{table}[H]
+	\centering
+	\adjustbox{max width=\textwidth}{
+	\input{../../output/tables/regs_outreg2.tex}
+	}
+\end{table}
+
+\input{../../output/tables/regs_estout.tex} 
+
+
+
+\end{document}

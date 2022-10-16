@@ -1,0 +1,229 @@
+\documentclass[14pt]{article}
+
+%%%%%% packages 
+
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{color}
+%\usepackage{appendix}
+\usepackage{booktabs}
+%\usepackage{etex}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=20mm,
+	top=20mm,
+	right=20mm,
+	bottom=20mm
+}
+
+%\usepackage[pdfborder={0 0 0},pdfusetitle]{hyperref}
+%\usepackage{doi}
+\usepackage{tikz}
+\usepackage{pgfplots}
+%\usepackage{imakeidx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{comment}
+%\usepackage[labelformat=parens,labelsep=quad,skip=3pt]{caption}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{stata}
+
+\usepackage{tabularx}
+
+\usepackage{enumitem}
+
+\usepackage{adjustbox}
+
+\usepackage{pdflscape}
+
+\usepackage{colortbl}
+
+\usepackage{booktabs}
+
+\setlength\parindent{0pt} 
+
+%%%%%% End of preemble
+
+\title{Coding for Reproducible Research \\ Making Tables in Stata and Latex}
+\author{Sakina Shibuya}
+\date{October 19, 2022}
+
+\begin{document}
+		
+\maketitle
+		
+		
+\section{Introduction}
+
+Over the next two courses (one hour each), we will learn how to make your research more reproducible. \\
+
+Today, we are going to focus on making reproducible tables using Stata and Latex, while we learn some tricks for better collaboration and code organizations. \\
+
+In this lecture, I'm assuming the following:
+\begin{itemize}
+	\item You have Stata, Latex, and an Latex editor installed in your device.
+	\item You are already familiar and somewhat comfortable with coding in Stata and Latex.
+	\item You feel comfotable reading Stata help files.
+\end{itemize}
+
+My code has a lot of explanations. If you are unfamiliar with Stata and/or Latex, I hope they are helpful.
+
+\section{Tricks for Easier Collaboration}
+
+It's rarely the case that we work on a research project all on our own. \\ 
+
+When you have co-authors, it's extremely important that the work each team member does is shared with others in a timely as well as organized manner. \\ 
+
+One amazing tool we can use is Git. We will learn about this on next Wednesday (Oct. 26th). \\
+
+Today I want show you how I make mine as well as my co-authors lives less miserable in Stata. \\
+
+\subsection{Master do-files}
+
+We often have multiple do-files to complete one task (e.g. conducting a robustness check). \\ 
+
+To make sure that all do-files associated with a particular task are easily recognizable by my team mates, I often write a master do file. \\ 
+
+\begin{figure}[H]
+	\centering
+	\caption{Example Folder Structure with a Master Do File}
+	\includegraphics[width=0.7\linewidth]{example_folder}
+	\label{fig:examplefolder}
+\end{figure}
+	
+
+\subsection{Do-files Executable by All Your Team Members}
+
+It's very important that your code is executable by your team members. \\ 
+
+For this to be possible, they have to have proper access to input (i.e. data) and 
+code. \\
+
+One way to make your code executable by others is to have a "housekeeping" section as the following.
+This one is from a project I'm working on with Zunia. \\ 
+
+Notice that I have the following sections:
+\begin{enumerate}
+	\item User identification
+	\item File directories
+	\item Sections
+	\item User-written commands
+\end{enumerate}
+
+\textbf{User identification} identifies your device and set folder paths to the folders shared by all the team members. \\
+
+\textbf{File directories} make it clear where things are. \\
+
+\textbf{Sections} provide a map for this current do file. \\
+
+\textbf{User-written commands} make sure that everyone has all the necessary commands installed to run your code.
+
+\newpage
+\begin{stlog}\input{instructions_1.log.tex}\end{stlog}
+\newpage
+\section{Making Reproducible Tables}
+
+We are going to use an example dataset that comes with Stata, called \textbf{nlswork.dta}. \\
+
+If you want to know a bit about this dataset, simply
+
+\begin{stlog}\input{instructions_2.log.tex}\end{stlog}
+We need to make one variable and change tha labels of two existing variables for our exercise. \\
+\begin{stlog}\input{instructions_3.log.tex}\end{stlog}
+\subsection{Making Tables with outreg2}
+
+Suppose we are interested in understanding the relationships between wage and working hours (dependent variables), and education, race, and region in US in which respondents reside (independent variables). \\
+
+We want to output the results into one table. \\
+
+The easiest command for this purpose is probably \textit{outreg2}. \\
+
+So we can run the following code. \\
+
+\begin{stlog}\input{instructions_4.log.tex}\end{stlog}
+
+This command produces the following table. \\
+
+\begin{table}[H]
+	\centering
+	\adjustbox{max width=\textwidth}{
+	\input{regs_outreg2.tex}
+	}
+\end{table}
+
+
+This is fine for quick outputting, but it's very hard to read. \\
+
+We also probably don't really need to show all estimates. \\
+
+Let's say that we are only interested in the interacted terms for the purpose of this exercise. \\
+
+The following table is much easier to read and looks more professional. \\
+
+\input{regs_estout.tex} 
+
+
+Once we start thinking about more customization, we git the limitations of \textit{outreg2} quickly. \\
+
+How can we make this table? \\
+\newpage
+\subsection{Making tables with estout and texdoc}
+
+We can use \textit{estout} and \textit{texdoc} to achieve this. \\
+
+
+\textbf{\textit{estout}} is a flexible command for outputting a table. \\
+
+You can do all kinds of customization, although it can get pretty complicated. \\
+
+I like to combined \textit{estout} and \textbf{\textit{texdoc}} to make my life a bit easier withouth compromizing on customizabiliy. \\
+
+
+I won't really go deep into explaining \textit{texdoc}, because there is a very nice insturction on the web \href{http://repec.sowi.unibe.ch/stata/texdoc/getting-started.html}{by Ben Jann}. \\
+
+I just note a couple of things.
+\begin{itemize}
+	\item The code that produces a tex file must be called from another do-file using the command \textit{textdoc do}.
+	\item You also need to have \textit{stata.sty} in the same folder to complile the tex file.
+\end{itemize}
+
+Here is the code to do this. \\
+
+\begin{stlog}\input{instructions_5.log.tex}\end{stlog}
+
+After this part, you have to call the do file that writes out a whole tex file that companies \textit{Panel A} and \textit{Panel B} in a special way using the command, \textbf{\textit{texdoc do}} as the following: \\
+
+\begin{verbatim}
+texdoc do "\$dofiles/analysis/table\_regs\_estout.do"
+\end{verbatim}
+
+
+And this is what's inside of this do-file. \\
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Inside \textit{table\_regs\_estout.do}}
+	\includegraphics[width=\linewidth]{example_texdoc}
+	\label{fig:exampletexdoc}
+\end{figure}
+
+
+This is the end of today's class. \\
+
+
+Next time, we will cover how to use Git with Github. \\
+
+
+Any questions and concerns?
+
+\end{document}

@@ -1,0 +1,49 @@
+\begin{landscape}
+	
+	\begin{table}[ht!]
+		\newcolumntype{C}{>{\centering\arraybackslash}X}
+		\caption{Correlation between Work, Race, Education, and Region}
+		\vspace*{-0.3cm}
+		\begin{center}
+				\resizebox{1.2\textwidth}{!}{
+
+
+
+		\begin{tabular}{@{\extracolsep{0.2cm}}lcccccccc}
+			\hline
+			& (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8)  \\
+			
+			&\multicolumn{2}{c}{Votes [coalition]} & \multicolumn{2}{c}{Votes [party]}  & \multicolumn{2}{c}{Vote share [coalition]} & \multicolumn{2}{c}{Vote share [party]}\\
+			\cline{2-3} \cline{4-5} \cline{6-7} \cline{8-9}
+			&UPA&NDA&Congress&BJP &UPA&NDA&Congress&BJP\\ 
+			\hline
+			\textit{Panel A: National elections}\\
+			BailoutXpost&0.017**&-0.015***&0.009**&-0.011**&0.019&-0.031***&0.016&-0.021**\\
+			&[0.008]&[0.005]&[0.005]&[0.004]&[0.013]&[0.011]&[0.010]&[0.009]\\
+			\\
+			Sample
+			State FE & Yes & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+			District FE& Yes & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+			Observations&9,964&9,964&9,964&9,964&9,964&9,964&9,964&9,964\\
+			Electoral cycles&+/- 1&+/- 1&+/- 1&+/- 1&+/- 1&+/- 1&+/- 1&+/- 1\\
+			Dep. var. mean&0.331&0.145&0.111&0.101&0.521&0.306&0.241&0.22\\
+			\hline
+			\textit{Panel B: State elections}\\
+			BailoutXpost&0.017**&-0.015***&0.009**&-0.011**&0.019&-0.031***&0.016&-0.021**\\
+			&[0.008]&[0.005]&[0.005]&[0.004]&[0.013]&[0.011]&[0.010]&[0.009]\\
+			\\
+			State FE & Yes & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+			District FE& Yes & Yes & Yes & Yes & Yes & Yes & Yes & Yes \\
+			Observations&9,964&9,964&9,964&9,964&9,964&9,964&9,964&9,964\\
+			Electoral cycles&+/- 2&+/- 2&+/- 2&+/- 2&+/- 2&+/- 2&+/- 2&+/- 2\\
+			Dep. var. mean&0.331&0.145&0.111&0.101&0.521&0.306&0.241&0.22\\
+			\hline
+		\end{tabular}
+		
+		\label{tab:default_table}}
+		
+		\end{center}
+		\underline{Notes}: This table shows treatment effects of debt forbearance on loan repayment. Each column shows results from a separate regression. The dependent variable in column (1) and column (2) is an indicator equal to 1 if a borrower failed to make a payment within 90 days of the due date, which is the cutoff after which the lender is required to classify the loan as nonperforming. Standard errors, clustered at the caller-date level, in parentheses. * p < 0.10, ** p < 0.05, *** p < 0.01.
+	\end{table}
+
+\end{landscape}

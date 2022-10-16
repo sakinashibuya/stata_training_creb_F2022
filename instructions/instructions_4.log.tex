@@ -1,0 +1,24 @@
+{\smallskip}
+{\smallskip}
+reg ln_wage collgrad\#\#black i.year, r
+estimates store reg1
+        
+reg ln_wage south\#\#black i.year, r
+estimates store reg2
+{\smallskip}
+reg hours collgrad\#\#black i.year, r
+estimates store reg3
+        
+reg hours south\#\#black i.year, r
+estimates store reg4
+{\smallskip}
+{\smallskip}
+outreg2 [reg1 reg2 reg3 reg4] using "$tables/regs_outreg2.tex", ///
+        replace /// Replaces the existing file
+        tex(frag) /// Creates a tex file without preembles
+        label /// Use variable lables
+        title("Correlation between Work, Race, Education, and Region") ///
+        drop(i.year) /// Drop coefficients on the year FE
+        dec(4) // Show estimates till 4th decimals
+        
+        
