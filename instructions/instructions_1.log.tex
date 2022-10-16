@@ -1,0 +1,45 @@
+{\smallskip}
+***************
+* Housekeeping 
+***************
+{\smallskip}
+clear all
+set more off
+set mem 100m
+set graphics off
+{\smallskip}
+{\smallskip}
+* User identification
+if c(username) == "sakina" {\lbr}
+        global dropbox "C:\\Users\\sakina\\Dropbox\\Projects\\Pakistan_HiringCostsWomen"
+        global git         "C:\\Users\\sakina\\Documents\\Git\\pakistan_flfp"
+{\rbr}
+{\smallskip}
+if c(username) == "YourUserName" {\lbr}
+        global dropbox "YourPathToYourDropboxFolder"
+        global git         "YourPathToYourGitHubFolder"
+{\rbr}
+{\smallskip}
+{\smallskip}
+* File directories
+global rawData          "$dropbox/Data/PrimaryData/rawData"
+global modData          "$dropbox/Data/PrimaryData/modifiedData"
+global dofiles          "$git/code_datawork"
+global tables           "$git/output/tables/hfc/pilot_baseline"
+global graphs           "$git/output/graphs/hfc/pilot_baseline"
+global report           "$git/code_writings/HFCReports/pilot_baseline"
+{\smallskip}
+{\smallskip}
+* Sections
+global labeling         1
+global cleanData        1
+global constructVars  1
+global analysis 1
+{\smallskip}
+        
+* User-written commands
+local download = 0 // Switch to 1 to user-written programs
+if `download' {\lbr}
+        ssc install texdoc, replace
+        ssc install texsave, replace
+        {\rbr}
