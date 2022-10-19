@@ -8,7 +8,11 @@ It creates a latex file with instructions for the training.
 texdoc init "$instructions/regs_estout.tex", replace
 
 * If you want to add a statistic in, say, a footnote, you can do so in a reproducible manner.
-texdoc local totObs = _N
+texdoc stlog, nolog
+
+	texdoc local totObs = _N
+
+texdoc stlog close
 
 /*** 
 	\begin{table}[H]

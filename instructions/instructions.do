@@ -389,13 +389,14 @@ texdoc stlog, nodo cmdlog
 		
 	***** Ouput a table
 	
-		*** Panel A: educationXblack
+*** Panel A: educationXblack
 		estout reg1_new reg2_new ///
 				using "$tables/regs_estout_panelA.tex", ///
 				style(tex) replace ///
 				keep(1.collgrad#1.black) /// Keeping the estimate of interest.
 				interaction(" $\times$ ") /// Specifying how the interaction is shown in the doc.
-				cells(b(star fmt(%9.3f)) se(par([ ]) fmt(%9.3f))) /// Setting how the point esitmate (b) and SE are shown. 
+				cells(b(star fmt(%9.3f)) se(par([ ]) fmt(%9.3f))) /// Setting how the point esitmate (b) and SE are shown.
+				starlevels(* 0.10 ** 0.05 *** 0.01) /// estout's default star levels are :* for p<.05, ** for p<.01, and *** for p<.001
 				label nonumbers prehead() eqlabels(" ", none) /// Setting column titles
 				mgroups(, none) mlabels(, none) collabels(, none) /// Setting column titles
 				stats(blank yearFE N dvmean, fmt(0) /// Adding the stats and notes on FE 
@@ -409,13 +410,14 @@ texdoc stlog, nodo cmdlog
 				keep(1.south#1.black) ///
 				interaction(" $\times$ ") ///
 				cells(b(star fmt(%9.3f)) se(par([ ]) fmt(%9.3f))) ///
+				starlevels(* 0.10 ** 0.05 *** 0.01) ///
 				label nonumbers prehead() eqlabels(" ", none) ///
 				mgroups(, none) mlabels(, none) collabels(, none) ///
 				stats(blank yearFE N dvmean, fmt(0) ///
 					  labels(" " "Year FE" "Observations" ///
 							 "Dep. var. mean")) ///
 				 postfoot(\hline \noalign{\smallskip})
-				 		 
+				 
 texdoc stlog close 
 
 

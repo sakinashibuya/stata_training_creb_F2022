@@ -28,3 +28,5 @@ Purpose: Learn how to code to make research organized and reproducible
 	
 	texdoc do "$instructions/instructions.do"
 	
+	texdoc do "$instructions/table_regs_estout.do"
+	
